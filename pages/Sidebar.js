@@ -1,105 +1,21 @@
 import Link from 'next/link';
 import React, { useState } from 'react';
+import { SidebarItems } from '../json_data/SidebarItems';
 
 const Sidebar = () => {
-  const [selected, setSelected] = useState(null);
-
-  const handleClick = (item) => {
-    setSelected(selected === item ? null : item);
-  };
-
   return (
     <div className='sidebar w-64 bg-primary-100'>
       <h1>Inventory Management</h1>
       <ul>
-        <Link href='/'>
-          <li>Dashboard</li>
-        </Link>
-        <li onClick={() => handleClick('Inventory')}>
-          Inventory
-          {selected === 'Inventory' && (
-            <ul>
-              <Link href='/items'>
-                <li>Items</li>
-              </Link>
-              <Link href='/item-groups'>
-                <li>Item Groups</li>
-              </Link>
-              <Link href='/inventory-adjustment'>
-                <li>Inventory Adjustment</li>
-              </Link>
-            </ul>
-          )}
-        </li>
-        <li onClick={() => handleClick('Inventory')}>
-          Sales
-          {selected === 'Inventory' && (
-            <ul>
-              <Link href='/customers'>
-                <li>Customers</li>
-              </Link>
-              <Link href='/sales-orders'>
-                <li>Sales Orders</li>
-              </Link>
-              <Link href='/packages'>
-                <li>Packages</li>
-              </Link>
-              <Link href='/shipments'>
-                <li>Shipments</li>
-              </Link>
-              <Link href='/invoices'>
-                <li>Invoices</li>
-              </Link>
-              <Link href='/slaes-receipts'>
-                <li>Sales Receipts</li>
-              </Link>
-
-              <Link href='/payments-received'>
-                <li>Payments Reveived</li>
-              </Link>
-
-              <Link href='/sales-returns'>
-                <li>Sales Returns</li>
-              </Link>
-
-              <Link href='/credit-notes'>
-                <li>Credit Notes</li>
-              </Link>
-            </ul>
-          )}
-        </li>
-
-        <li onClick={() => handleClick('Inventory')}>
-          Purchases
-          {selected === 'Inventory' && (
-            <ul>
-              <Link href='/vendors'>
-                <li>Vendors</li>
-              </Link>
-              <Link href='/expenses'>
-                <li>Expenses</li>
-              </Link>
-              <Link href='/purchase-orders'>
-                <li>Purchase Orders</li>
-              </Link>
-              <Link href='/purchase-receives'>
-                <li>Purchase Receives</li>
-              </Link>
-              <Link href='/bills'>
-                <li>Bills</li>
-              </Link>
-              <Link href='/payments-made'>
-                <li>Payments Made</li>
-              </Link>
-              <Link href='/vendor-credits'>
-                <li>Vendor Credits</li>
-              </Link>
-            </ul>
-          )}
-        </li>
-        <li>Integrations</li>
-        <li>Reports</li>
-        <li>Documents</li>
+        {SidebarItems.map((item, index) => (
+          <li key={index}>
+            {item.title}
+            {item.subMenu &&
+              item.subMenu.map((subItem, subIndex) => (
+                <li key={subIndex}>{subItem.title}</li>
+              ))}
+          </li>
+        ))}
       </ul>
     </div>
   );
