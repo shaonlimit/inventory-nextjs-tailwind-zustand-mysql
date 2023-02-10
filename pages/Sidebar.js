@@ -7,13 +7,13 @@ const Sidebar = () => {
 				{SidebarItems.map((menu, index) => (
 					<li key={index} className='group'>
 						{menu.title}
-						{menu.subMenu
-							? menu.subMenu.map((item, index) => (
-									<ul className='hidden group-hover:grid pl-5'>
-										<li>{item.title}</li>
-									</ul>
-							  ))
-							: null}
+						{menu.subMenu ? (
+							<ul className='hidden group-hover:grid pl-5'>
+								{menu.subMenu.map((item, index) => (
+									<li key={index}>{item.title}</li>
+								))}
+							</ul>
+						) : null}
 					</li>
 				))}
 			</ul>
