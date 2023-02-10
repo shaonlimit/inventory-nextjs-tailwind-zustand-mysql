@@ -1,0 +1,2 @@
+1) create sidebar
+2) create item group page
